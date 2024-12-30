@@ -17,6 +17,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     });
 
     useEffect(() => {
+        console.log(isDark)
         const html = document.documentElement;
         if (isDark) {
             html.classList.add('dark');
