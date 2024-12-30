@@ -9,7 +9,7 @@ export const TaskList: React.FC = () => {
     const { tasks, fetchTasks, updateTask, deleteTask } = useContext(TaskContext);
 
     const [filter, setFilter] = useState('');
-    const { isAuthenticated, logout } = useContext(AuthContext);
+    const { isAuthenticated } = useContext(AuthContext);
     const navigate = useNavigate();
 
     useEffect(() => {

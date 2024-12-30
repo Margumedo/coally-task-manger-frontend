@@ -1,5 +1,5 @@
 
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 
 export const Login: React.FC = () => {
     const navigate = useNavigate();
-    const { isAuthenticated, login } = useContext(AuthContext);
+    const { login } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
