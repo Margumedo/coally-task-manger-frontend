@@ -95,7 +95,7 @@ export const TaskList: React.FC = () => {
                                 <h2 className="text-lg font-semibold">{task.title}</h2>
                                 <button
                                     onClick={() => handleToggleComplete(task._id || '', task.completed)}
-                                    className={`px-2 py-1 rounded text-white border ${task.completed ? 'border-green-600 text-green-600 hover:bg-green-500 hover:text-white ' : 'border-secondary-400 text-secondary-400 hover:bg-secondary-500 hover:text-white'}`}
+                                    className={`px-2 py-1 rounded text-white border ${task.completed ? 'border-green-600 text-green-100 bg-green-400 dark:bg-inherit dark:text-green-600 hover:bg-green-500 hover:text-white dark:hover:bg-green-500 dark:hover:text-white' : 'border-secondary-400  text-secondary-100 bg-secondary-400 dark:bg-inherit dark:text-secondary-400 hover:bg-secondary-500 dark:hover:bg-secondary-500 dark:hover:text-white hover:text-white'}`}
 
                                 >
                                     {task.completed ? 'Completada' : 'Pendiente'}
