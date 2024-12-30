@@ -3,12 +3,15 @@ import React, { useContext, useState } from 'react';
 import { TaskContext } from '../contexts/TaskContext';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 export const CreateTask: React.FC = () => {
     const { createTask } = useContext(TaskContext);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const navigate = useNavigate();
+
+    const { isDark } = useContext(ThemeContext)
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -19,6 +22,8 @@ export const CreateTask: React.FC = () => {
                 icon: 'warning',
                 title: 'Título requerido',
                 text: 'Por favor, ingresa un título para la tarea.',
+                background: isDark ? '#1f2937' : '#fff',
+                color: isDark ? '#f3f4f6' : '#4b5563',
             });
             return; // Cancelamos la creación
         }
@@ -28,6 +33,8 @@ export const CreateTask: React.FC = () => {
             icon: 'success',
             title: 'Creación Exitosa',
             text: 'Ahora podras verla en tu lista',
+            background: isDark ? '#1f2937' : '#fff',
+            color: isDark ? '#f3f4f6' : '#4b5563',
         });
         navigate('/');
     };

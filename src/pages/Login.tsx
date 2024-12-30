@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { axiosIntance } from '../api/axiosInstance';
 
 import Swal from 'sweetalert2';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 export const Login: React.FC = () => {
     const navigate = useNavigate();
@@ -13,6 +14,8 @@ export const Login: React.FC = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const { isDark } = useContext(ThemeContext)
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -24,6 +27,8 @@ export const Login: React.FC = () => {
                     icon: 'success',
                     title: 'Bienvenido al Task Manager',
                     text: 'Has iniciado sesión correctamente.',
+                    background: isDark ? '#1f2937' : '#fff',
+                    color: isDark ? '#f3f4f6' : '#4b5563',
                 });
                 navigate('/');
 

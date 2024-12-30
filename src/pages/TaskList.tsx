@@ -6,6 +6,7 @@ import { AuthContext } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { FaRegPlusSquare } from "react-icons/fa";
+import { ThemeContext } from '../contexts/ThemeContext';
 
 export const TaskList: React.FC = () => {
     const { tasks, fetchTasks, updateTask, deleteTask } = useContext(TaskContext);
@@ -13,6 +14,8 @@ export const TaskList: React.FC = () => {
     const [filter, setFilter] = useState('');
     const { isAuthenticated } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    const { isDark } = useContext(ThemeContext)
 
     useEffect(() => {
         if (!isAuthenticated) {
@@ -32,8 +35,8 @@ export const TaskList: React.FC = () => {
             confirmButtonText: 'Sí, eliminar',
             cancelButtonText: 'Cancelar',
             cancelButtonColor: '#f30b0b79',
-            background: '#1f2937',
-            color: '#f3f4f6',
+            background: isDark ? '#1f2937' : '#fff',
+            color: isDark ? '#f3f4f6' : '#4b5563',
         });
 
         if (result.isConfirmed) {
@@ -92,7 +95,8 @@ export const TaskList: React.FC = () => {
                                 <h2 className="text-lg font-semibold">{task.title}</h2>
                                 <button
                                     onClick={() => handleToggleComplete(task._id || '', task.completed)}
-                                    className={`px-2 py-1 rounded text-white ${task.completed ? 'bg-green-600 hover:bg-green-500' : 'bg-secondary-400 hover:bg-secondary-300'}`}
+                                    className={`px-2 py-1 rounded text-white border ${task.completed ? 'border-green-600 text-green-600 hover:bg-green-500 hover:text-white ' : 'border-secondary-400 text-secondary-400 hover:bg-secondary-500 hover:text-white'}`}
+
                                 >
                                     {task.completed ? 'Completada' : 'Pendiente'}
                                 </button>
@@ -112,9 +116,12 @@ export const TaskList: React.FC = () => {
                             <button
                                 onClick={() => handleDeleteTask(task._id || '')}
                                 className="px-2 py-1 bg-red-500 hover:bg-red-400 rounded text-white"
+
+
                             >
                                 Eliminar
                             </button>
+
                         </div>
                     </li>
                 ))}

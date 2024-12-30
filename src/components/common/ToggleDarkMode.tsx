@@ -1,23 +1,12 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { FaSun, FaMoon } from 'react-icons/fa';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 export const ToggleDarkMode: React.FC = () => {
-    const [isDark, setIsDark] = React.useState(
-        document.documentElement.classList.contains('dark')
-    );
 
-    const toggleDarkMode = () => {
-        const html = document.documentElement;
-        if (html.classList.contains('dark')) {
-            html.classList.remove('dark');
-            setIsDark(false);
-        } else {
-            html.classList.add('dark');
-            setIsDark(true);
-        }
-    };
+    const { isDark, toggleDarkMode } = useContext(ThemeContext);
 
     return (
         <button

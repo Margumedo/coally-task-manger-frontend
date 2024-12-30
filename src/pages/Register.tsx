@@ -3,6 +3,8 @@ import { AuthContext } from '../contexts/AuthContext';
 import { axiosIntance } from '../api/axiosInstance';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { ThemeContext } from '../contexts/ThemeContext';
+import { AxiosError } from 'axios';
 
 export const Register: React.FC = () => {
     const navigate = useNavigate();
@@ -10,6 +12,8 @@ export const Register: React.FC = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const { isDark } = useContext(ThemeContext)
 
     // Decide si deseas loguear automáticamente al usuario después de registrarse.
     // Si prefieres enviarlo al login, no uses `login(response.data.token)` y haz un navigate('/login').
@@ -32,16 +36,18 @@ export const Register: React.FC = () => {
                     icon: 'success',
                     title: 'Registro Exitoso',
                     text: 'Ahora puedes gestionar tus tareas.',
+                    background: isDark ? '#1f2937' : '#fff',
+                    color: isDark ? '#f3f4f6' : '#4b5563',
                 });
 
             } else {
                 alert('No se pudo crear la cuenta. Revisa los datos ingresados.');
             }
-        } catch (error: any) {
+        } catch (error: AxiosError | unknown) {
             console.error('Error registering user:', error);
             // alert('Ocurrió un error al registrar la cuenta. Verifica el correo o inténtalo más tarde.');
-            if (error.response) {
-                const { status, data } = error.response;
+            if (error instanceof AxiosError) {
+                const { status, data } = error.response || { status: null, data: { message: 'Error desconocido de Axios' } }; // Manejo de response undefined
 
                 if (status === 400) {
                     // Email con formato inválido
@@ -49,6 +55,8 @@ export const Register: React.FC = () => {
                         icon: 'error',
                         title: 'Error de registro',
                         text: data.message || 'Formato de email errado. Verifica e intenta de nuevo.',
+                        background: isDark ? '#1f2937' : '#fff',
+                        color: isDark ? '#f3f4f6' : '#4b5563',
                     });
                 } else if (status === 409) {
                     // Email ya registrado
@@ -56,6 +64,8 @@ export const Register: React.FC = () => {
                         icon: 'warning',
                         title: 'Email duplicado',
                         text: data.message || 'Este correo ya está registrado.',
+                        background: isDark ? '#1f2937' : '#fff',
+                        color: isDark ? '#f3f4f6' : '#4b5563',
                     });
                 } else if (status === 500) {
                     // Error interno
@@ -63,6 +73,8 @@ export const Register: React.FC = () => {
                         icon: 'error',
                         title: 'Error interno',
                         text: 'Ocurrió un error en el servidor. Intenta más tarde.',
+                        background: isDark ? '#1f2937' : '#fff',
+                        color: isDark ? '#f3f4f6' : '#4b5563',
                     });
                 } else {
                     // Otros errores genéricos
@@ -70,6 +82,8 @@ export const Register: React.FC = () => {
                         icon: 'error',
                         title: 'Error',
                         text: data.message || 'Ocurrió un error inesperado.',
+                        background: isDark ? '#1f2937' : '#fff',
+                        color: isDark ? '#f3f4f6' : '#4b5563',
                     });
                 }
             } else {
@@ -78,6 +92,8 @@ export const Register: React.FC = () => {
                     icon: 'error',
                     title: 'Error de conexión',
                     text: 'No se pudo conectar con el servidor. Inténtalo más tarde.',
+                    background: isDark ? '#1f2937' : '#fff',
+                    color: isDark ? '#f3f4f6' : '#4b5563',
                 });
             }
         }
