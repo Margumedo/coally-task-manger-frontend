@@ -23,6 +23,12 @@ export const CreateTask: React.FC = () => {
             return; // Cancelamos la creación
         }
         await createTask({ title, description, completed: false });
+        // Mostrar Sweet Alert al crear
+        Swal.fire({
+            icon: 'success',
+            title: 'Creación Exitosa',
+            text: 'Ahora podras verla en tu lista',
+        });
         navigate('/');
     };
 
