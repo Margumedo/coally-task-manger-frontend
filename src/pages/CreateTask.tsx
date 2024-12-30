@@ -2,6 +2,7 @@
 import React, { useContext, useState } from 'react';
 import { TaskContext } from '../contexts/TaskContext';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 export const CreateTask: React.FC = () => {
     const { createTask } = useContext(TaskContext);
@@ -11,6 +12,16 @@ export const CreateTask: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        if (!title.trim()) {
+            // Mostramos alerta SweetAlert para indicar que el título es obligatorio
+            Swal.fire({
+                icon: 'warning',
+                title: 'Título requerido',
+                text: 'Por favor, ingresa un título para la tarea.',
+            });
+            return; // Cancelamos la creación
+        }
         await createTask({ title, description, completed: false });
         navigate('/');
     };
