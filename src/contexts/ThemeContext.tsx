@@ -13,7 +13,14 @@ export const ThemeContext = createContext<ThemeContextProps>({
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [isDark, setIsDark] = useState<boolean>(() => {
         // lee localStorage para ver si guardamos 'dark' como preferencia
-        return localStorage.getItem('theme') === 'dark';
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme === 'dark') {
+            return true;
+        } else if (storedTheme === 'light') {
+            return false;
+        } else {
+            return true;
+        }
     });
 
     useEffect(() => {

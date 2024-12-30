@@ -5,12 +5,17 @@ import { AuthContext } from './contexts/AuthContext';
 
 export const App: React.FC = () => {
   const { logout } = useContext(AuthContext);
+  const { isAuthenticated } = useContext(AuthContext)
+
   return (
     <div className="min-h-screen">
-      {/* Si creo un navbar ira aquí */}
       <header className="p-2 bg-white dark:bg-gray-800 flex justify-end gap-x-4">
         <ToggleDarkMode />
-        <button onClick={logout} className="bg-red-500 dark:bg-primary-800 text-white px-3 py-1 rounded">Logout</button>
+        {
+          isAuthenticated &&
+          <button onClick={logout} className="bg-red-500 dark:bg-primary-800 text-white px-3 py-1 rounded">Logout</button>
+        }
+
       </header>
       <main>
         <AppRouter />
