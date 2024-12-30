@@ -14,8 +14,6 @@ export const TaskList: React.FC = () => {
     const { isAuthenticated } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const isDark = true;
-
     useEffect(() => {
         if (!isAuthenticated) {
             navigate('/login'); // Redirigir al login si no está autenticado

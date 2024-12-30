@@ -1,50 +1,43 @@
-# React + TypeScript + Vite
+# Task Manager Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+¡Bienvenido al **Task Manager Frontend**!  
+Este proyecto es una aplicación **React + Vite + TypeScript** que consume un backend con autenticación JWT y permite **gestionar tareas** (crear, editar, eliminar, filtrar) y un **flujo de registro/login**.
 
-Currently, two official plugins are available:
+---
+## ✨ **Características Principales**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Autenticación con JWT**  
+   - Registro de usuarios (manejo de email duplicado y email inválido).  
+   - Inicio de sesión con token.  
 
-## Expanding the ESLint configuration
+2. **CRUD de Tareas**  
+   - Crear nueva tarea con título (obligatorio) y descripción (opcional).  
+   - Editar tarea: cambiar título, descripción, estado (pendiente/completada).  
+   - Eliminar tarea con **confirmación** SweetAlert.  
+   - Filtro de tareas (todas, completadas, pendientes).  
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+3. **Modo Oscuro/Claro**  
+   - Toggle con íconos (luna/sol) que persiste la preferencia en `localStorage`.  
+   - SweetAlert con estilo claro u oscuro, según tu preferencia.  
 
-- Configure the top-level `parserOptions` property like this:
+4. **SweetAlert2** para mensajes y alertas  
+   - “Bienvenido al Task Manager” al iniciar sesión,  
+   - “Registro Exitoso” o alertas de error en caso de email duplicado, etc.  
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+5. **Responsive**  
+   - Diseño responsivo para desktop y móvil con Tailwind.  
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
+## ⚙️ **Requisitos**
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- **Node.js** >= 14  
+- **npm** o **yarn**  
+- Conexión a un **backend** que provea endpoints como `/auth/register`, `/auth/login`, `/tasks`, etc.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+---
+## 🚀 **Instalación y Uso (Local)**
+
+1. **Clona** el repositorio:  
+   ```bash
+   git clone https://github.com/<tu-user>/<tu-repo>.git
+   cd <tu-repo>
