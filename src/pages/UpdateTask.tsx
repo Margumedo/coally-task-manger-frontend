@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { TaskContext } from '../contexts/TaskContext';
 import Swal from 'sweetalert2';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 export const UpdateTask: React.FC = () => {
     const { tasks, updateTask } = useContext(TaskContext);
@@ -12,6 +13,8 @@ export const UpdateTask: React.FC = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [completed, setCompleted] = useState(false);
+
+    const { isDark } = useContext(ThemeContext)
 
     useEffect(() => {
         // Buscar la tarea en la lista de tasks usando el ID
@@ -35,6 +38,8 @@ export const UpdateTask: React.FC = () => {
                 icon: 'success',
                 title: 'Atualización Exitosa',
                 text: 'Haz actualizado tu tarea',
+                background: isDark ? '#1f2937' : '#fff',
+                color: isDark ? '#f3f4f6' : '#4b5563',
             });
             navigate('/');
         }

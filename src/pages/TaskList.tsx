@@ -47,8 +47,8 @@ export const TaskList: React.FC = () => {
                     icon: 'success',
                     title: 'Eliminada',
                     text: 'La tarea ha sido eliminada',
-                    background: '#1f2937',
-                    color: '#f3f4f6',
+                    background: isDark ? '#1f2937' : '#fff',
+                    color: isDark ? '#f3f4f6' : '#4b5563',
                 });
             } catch (error) {
                 console.error(error);
@@ -56,6 +56,8 @@ export const TaskList: React.FC = () => {
                     icon: 'error',
                     title: 'Error',
                     text: 'No se pudo eliminar la tarea',
+                    background: isDark ? '#1f2937' : '#fff',
+                    color: isDark ? '#f3f4f6' : '#4b5563',
                 });
             }
         }

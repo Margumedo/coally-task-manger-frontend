@@ -40,17 +40,12 @@ export const Login: React.FC = () => {
                 icon: 'error',
                 title: 'Error de inicio de sesión',
                 text: 'Por favor verifica tus credenciales.',
+                background: isDark ? '#1f2937' : '#fff',
+                color: isDark ? '#f3f4f6' : '#4b5563',
             });
         }
     };
 
-
-    // // Redirigir a Home si ya estoy logueado
-    // useEffect(() => {
-    //     if (isAuthenticated) {
-    //         navigate('/');
-    //     }
-    // }, [isAuthenticated]);
 
 
     return (
